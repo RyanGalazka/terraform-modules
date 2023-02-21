@@ -2,7 +2,7 @@
 resource "aws_security_group" "alb_security_group" {
   name        = "alb security group"
   description = "enable http/https access on port 80/443"
-  vpc_id      = var.aws_vpc.vpc.id
+  vpc_id      = var.vpc.id
 
   ingress {
     description      = "http access"
@@ -36,7 +36,7 @@ resource "aws_security_group" "alb_security_group" {
 resource "aws_security_group" "ecs_security_group" {
   name        = "ecs security group"
   description = "enable http/https access on port 80/443 via alb sg"
-  vpc_id      = var.aws_vpc.vpc.id
+  vpc_id      = var.vpc.id
 
   ingress {
     description      = "http access"
