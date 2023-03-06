@@ -49,3 +49,14 @@ module "acm" {
   domain_name                       = var.domain_name
   alternative_name                  = var.alternative_name
 }
+
+# create alb
+module "application_load_balancer" {
+  source                            = "../modules/alb"
+  project_name                      = module.vpc.project_name
+  alb_security_group_id             = module.security-groups.alb_security_group_id
+  public_subnet_az1_id              = module.vpc.public_subnet_az1_id
+  public_subnet_az2_id              = module.vpc.public_subnet_az2_id
+  vpc_id                            = module.vpc.vpc_id
+  certificate_arn                   = module.acm.certificate_arn
+}
